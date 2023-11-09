@@ -3,9 +3,17 @@ function goToMoviesPage() {
 }
 
 function openMovieInfoPage(movie) {
-  
-    displayMovieInfoPage(movie);
+    const viewDetailsButtons = document.querySelectorAll('.view-details-button');
+
+    viewDetailsButtons.forEach(function (viewDetailsButton) {
+        viewDetailsButton.addEventListener('click', function () {
+            console.log('View Details button clicked');
+            displayMovieInfoPage(movie);
+            document.getElementById('backButton').style.display = 'block';
+        });
+    });
 }
+
 
 document.addEventListener('DOMContentLoaded', function () {
     if (window.movieDetails) {
@@ -41,10 +49,6 @@ function createMovieContainer(movie) {
     const viewDetailsButton = document.createElement('button');
     viewDetailsButton.classList.add('view-details-button');
     viewDetailsButton.textContent = 'View Details';
-    viewDetailsButton.addEventListener('click', function () {
-        console.log('View Details button clicked');
-        openMovieInfoPage(movie);
-    });
 
     movieContainer.appendChild(posterImage);
     movieContainer.appendChild(viewDetailsButton);
@@ -52,25 +56,12 @@ function createMovieContainer(movie) {
     return movieContainer;
 }
 
+
 function displayMovieInfoPage(movie) {
     const movieInfoContainer = document.getElementById('movieInfo');
     const carouselContainer = document.querySelector('.carousel-container');
     const searchInput = document.getElementById('searchInput');
     const searchButton = document.getElementById('searchButton');
-    
-  
-    let viewDetailsButton;
-
-   
-         if (viewDetailsButton) {
-            viewDetailsButton.addEventListener('click', function () {
-                console.log('View Details button clicked');
-                displayMovieInfoPage(movie);
-                
-             
-                document.getElementById('backButton').style.display = 'block';
-            });
-    }
 
     carouselContainer.style.display = 'none';
    
@@ -123,6 +114,12 @@ function displayMovieInfoPage(movie) {
     movieInfoContainer.appendChild(movieContainer);
 
     movieInfoContainer.appendChild(document.createElement('hr'));
+
+      viewDetailsButton.addEventListener('click', function () {
+        console.log('View Details button clicked');
+        openMovieInfoPage(movie);
+        document.getElementById('backButton').style.display = 'block';
+    });
 }
 
 let searchButton;
@@ -188,23 +185,15 @@ function displayMovieCarousel(data) {
             const carouselItem = createMovieContainer(movie);
             carouselInner.appendChild(carouselItem);
 
-           
+            // Attach the view details listener for each view-details-button
             const viewDetailsButton = carouselItem.querySelector('.view-details-button');
-            
-    
-            if (viewDetailsButton) {
-                viewDetailsButton.addEventListener('click', function () {
-                    console.log('View Details button clicked');
-                    openMovieInfoPage(movie);
-                });
-                
-            }
+            attachViewDetailsListener(viewDetailsButton, movie);
         });
 
-    
         showSlide(currentIndex);
     }
 }
+
 
 function searchMovies(query) {
     const apiUrl = `https://search.imdbot.workers.dev/?q=${query}`;
@@ -252,4 +241,12 @@ function goBack() {
     searchButton.style.display = 'block';
 
     window.location.href = 'movies.html';
+}
+function attachViewDetailsListener(viewDetailsButton, movie) {
+    if (viewDetailsButton) {
+        viewDetailsButton.addEventListener('click', function () {
+            console.log('View Details button clicked');
+            openMovieInfoPage(movie);
+        });
+    }
 }
