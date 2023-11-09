@@ -185,7 +185,6 @@ function displayMovieCarousel(data) {
             const carouselItem = createMovieContainer(movie);
             carouselInner.appendChild(carouselItem);
 
-            // Attach the view details listener for each view-details-button
             const viewDetailsButton = carouselItem.querySelector('.view-details-button');
             attachViewDetailsListener(viewDetailsButton, movie);
         });
