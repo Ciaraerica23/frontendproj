@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie Search</title>
     <link rel="stylesheet" href="movies.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="top">
@@ -14,10 +16,27 @@
         <h1>Movie Search</h1>
         <input type="text" id="searchInput" placeholder="Search for a movie">
         <button id="searchButton">Search</button>
+
         <div class="centered-container">
-        <div id="movieInfo" class="movie-info-container"></div>
-</div>
-</div>
+            <!-- Carousel structure -->
+            <div class="carousel-container">
+                <div class="carousel-inner" id="movieCarousel">
+                    <!-- Poster images will be dynamically added here using JavaScript -->
+                </div>
+                <button class="carousel-prev" onclick="prevSlide()">&#10094;</button>
+                <button class="carousel-next" onclick="nextSlide()">&#10095;</button>
+            </div>
+            <!-- End of carousel structure -->
+
+            <!-- Movie information container -->
+            <div id="movieInfo" class="movie-info-container">
+                <div id="results"></div>
+                <button id="backButton" onclick="goBack()">Back</button>
+
+                <!-- Movie information will be dynamically added here using JavaScript -->
+            </div>
+        </div>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>

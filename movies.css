@@ -22,18 +22,22 @@ body {
     max-height: 33%;
     display: block;
     margin: 0 auto;
-  }
+    transition: max-width 0.5s ease-in-out, max-height 0.5s ease-in-out;
+}
+
 .content {
     text-align: center;
-    width: 100%; 
+    width: 100%;
     color: white;
+    transition: margin-top 0.5s ease-in-out;
+    margin-top: 2em; 
 }
 
 .centered-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    margin-top: 2em;
   }
   
   .movie-info-container {
@@ -78,3 +82,109 @@ body {
     color: white;
   }
   
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 0; 
+    transition: width 0.5s ease-in-out;
+    margin: 10px auto;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: calc(100% / 3); 
+    box-sizing: border-box;
+}
+
+.carousel-item img {
+    max-width: 600px;
+    max-height: 500px;
+        width: auto;
+        height: auto;
+        cursor: pointer;
+        border-radius: 1em;
+    }
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+.carousel-item:hover {
+    filter: brightness(70%); 
+}
+
+
+.view-details-button {
+    border-radius: 1.5em;
+    background-color: black;
+    border: white solid .05em;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    padding: .5em 1em; 
+    font-size: 1.5em;
+    color: white;
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.carousel-item:hover .view-details-button {
+    display: block;
+}
+.movie-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.details-container {
+    flex: 1;
+}
+
+.details-container p {
+    margin: 10px 0;
+}
+
+.movie-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+#backButton {
+    border-radius: 1.5em;
+    background-color: black;
+    border: white solid .05em;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    padding: .5em 1em; 
+    font-size: 1.5em;
+    color: white;
+    display: none;
+}
